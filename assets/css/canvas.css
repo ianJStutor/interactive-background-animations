@@ -1,0 +1,4 @@
+canvas.Metaball {
+    filter: blur(50px) contrast(5);
+    opacity: 0.25;
+}
