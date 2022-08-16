@@ -42,7 +42,7 @@ export default class ParticleEngine {
         this.particles.forEach(p => p.setBounds(this.bounds));
     }
 
-    addParticle(p, beginning = true) {
+    addParticle(p, beginning = false) {
         p.setCtx?.(this.ctx);
         p.setBounds?.(this.bounds);
         if (beginning) this.particles.unshift(p);
