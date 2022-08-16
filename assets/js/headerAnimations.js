@@ -24,9 +24,10 @@ const setup = {
         currentAnimation = Metaball;
         Metaball.setupCanvas?.(canvas);
 
-        for (let i=0; i<100; i++) {
+        for (let i=0; i<75; i++) {
             engine.addParticle(new Metaball(ctx, {color: fgcolor}));
         }
+
         engine.start();
     },
     _Mesh() {
@@ -38,8 +39,25 @@ const setup = {
         currentAnimation = Mesh;
         Mesh.setupCanvas?.(canvas);
 
-        for (let i=0; i<50; i++) {
+        for (let i=0; i<75; i++) {
             engine.addParticle(new Mesh(ctx, {color: fgcolor}));
+        }
+
+        engine.start();
+    },
+    _Flag() {
+        const ctx = engine.ctx;
+        const canvas = ctx.canvas;
+        reset(canvas);
+
+        const { Flag } = animations;
+        currentAnimation = Flag;
+        Flag.setupCanvas?.(canvas);
+
+        const simplex = new SimplexNoise();
+        const points = Flag.getPointsArray(canvas.width, canvas.height, {inset: 20});
+        for (let {x, y} of points) {
+            engine.addParticle(new Flag(ctx, simplex, {x, y, color: fgcolor}));
         }
 
         engine.start();

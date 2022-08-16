@@ -39,7 +39,7 @@ export default class ParticleEngine {
         this.bounds = this.settings.bounds ?? {
             left: 0, top: 0, right: this.width, bottom: this.height
         };
-        this.particles.forEach(p => p.setBounds(this.bounds));
+        this.particles.forEach(p => p.setBounds?.(this.bounds));
     }
 
     addParticle(p, beginning = false) {
@@ -99,7 +99,7 @@ export default class ParticleEngine {
     }
 
     handlePointEvents(e) {
-        const {left, top} = e.target.getBoundingClientRect();
+        const {left, top} = e.currentTarget.getBoundingClientRect();
         const x = (e.clientX ?? e.touches[0].clientX) - left;
         const y = (e.clientY ?? e.touches[0].clientY) - top;
         this.particles.forEach(p => p.pointEvent?.(x, y));

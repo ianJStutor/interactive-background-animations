@@ -31,8 +31,8 @@ export default class Metaball {
         }, options);
 
         //position
-        this.x = this.settings.x ?? this.ctx.canvas.width * 0.5;
-        this.y = this.settings.y ?? this.ctx.canvas.height * 0.5;
+        this.x = this.settings.x ?? this.ctx?.canvas.width * 0.5;
+        this.y = this.settings.y ?? this.ctx?.canvas.height * 0.5;
 
         //direction & speed
         const { minSpeed, maxSpeed } = this.settings;
