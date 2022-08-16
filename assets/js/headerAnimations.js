@@ -2,9 +2,11 @@ import {
     ParticleEngine,
     animations
 } from "./canvas-animations/index.js";
+import { initTooltips } from "./widgets/tooltips.js";
 
 var engine = null;
 var currentAnimation = null;
+var nav = null;
 var fgcolor = "white";
 
 function reset(canvas) {
@@ -45,11 +47,12 @@ const setup = {
 };
 
 const headerAnimations = {
-    init(ctx, nav) {
+    init(ctx, navElement) {
+        nav = navElement;
         engine = new ParticleEngine(ctx, {pointEvents: true, useParentForPointEvents: true});
         for (let a of Object.values(animations)) {
             const button = document.createElement("button");
-            button.setAttribute("title", a.desc);
+            button.setAttribute("data-tooltip", a.desc);
             nav.append(button);
             button.addEventListener("click", () => {
                 if (button.classList.contains("active")) {
@@ -61,13 +64,14 @@ const headerAnimations = {
                 setup[`_${a.className}`]?.();
             });
         }
+        initTooltips(nav);
     },
     setColor(color) { fgcolor = color; },
     start(rand = true) {
         if (rand) {
             const anims = Object.values(animations);
             const a = anims[Math.floor(Math.random() * anims.length)];
-            const button = document.querySelector(`[title="${a.desc}"]`);
+            const button = nav.querySelector(`[data-tooltip="${a.desc}"]`);
             button?.click();
         }
         else engine.start();

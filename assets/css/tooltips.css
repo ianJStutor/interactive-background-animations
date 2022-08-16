@@ -1,0 +1,13 @@
+#tooltip {
+    position: fixed;
+    z-index: 100;
+    background-color: var(--highlight-light);
+    font-size: 14px;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 2px solid var(--highlight);
+    border-radius: 5px;
+    transform: translate(-75%, 105%);
+    pointer-events: none;
+}

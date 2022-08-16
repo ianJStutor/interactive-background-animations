@@ -9,6 +9,7 @@
     --canvas-color-mid: var(--grey);
     --canvas-color-light: var(--light);
     --highlight: rebeccapurple;
+    --highlight-light: #c2add6;
 }
 
 html {
@@ -79,7 +80,11 @@ section:nth-of-type(1) button {
     margin: 10px;
 }
 
-section:nth-of-type(1) button:hover,
+section:nth-of-type(1) button:hover {
+    background: radial-gradient(var(--highlight-light) 12px, transparent 12px), var(--light);
+    background-size: 100%, 0;
+}
+
 section:nth-of-type(1) button.active {
     background-size: 100%, 0;
 }
