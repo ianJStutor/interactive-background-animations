@@ -107,15 +107,19 @@ export default class Metaball {
         //bounce
         if (this.bounds) {
             if (this.x + this.radius < this.bounds.left) {
+                this.x = this.bounds.left - this.radius;
                 this.vx = this.originalVx = Math.abs(this.vx);
             }
             if (this.x - this.radius > this.bounds.right) {
+                this.x = this.bounds.right + this.radius;
                 this.vx = this.originalVx = -Math.abs(this.vx);
             }
             if (this.y + this.radius < this.bounds.top) {
+                this.y = this.bounds.top - this.radius;
                 this.vy = this.originalVy = Math.abs(this.vy);
             }
             if (this.y - this.radius > this.bounds.bottom) {
+                this.y = this.bounds.bottom + this.radius;
                 this.vy = this.originalVy = -Math.abs(this.vy);
             }
         }

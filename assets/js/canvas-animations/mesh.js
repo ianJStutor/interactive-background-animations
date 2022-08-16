@@ -28,9 +28,9 @@ export default class Mesh {
             minLineDistance: 10,
             maxLineDistance: 150,
             lineWidth: 0.5,
-            pointEventDistance: 50,
-            pointEventMultiplier: 3,
-            pointEventRecoverSpeed: 1.5
+            pointEventDistance: 100,
+            pointEventMultiplier: 2,
+            pointEventRecoverSpeed: 0.5
         }, options);
 
         //position
