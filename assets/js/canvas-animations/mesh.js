@@ -18,8 +18,6 @@ export default class Mesh {
             y: null,
             color: "black",
             radius: 0,
-            minRadius: 2,
-            maxRadius: 2,
             speed: null,
             minSpeed: 0.25,
             maxSpeed: 1.5,
@@ -123,18 +121,18 @@ export default class Mesh {
         //normal move
         this.x += this.vx * dt;
         this.y += this.vy * dt;
-        //bounce
+        //wrap
         if (this.bounds) {
             if (this.x + this.radius < this.bounds.left) {
                 this.x = this.bounds.right + this.radius;
             }
-            if (this.x - this.radius > this.bounds.right) {
+            else if (this.x - this.radius > this.bounds.right) {
                 this.x = -this.radius;
             }
             if (this.y + this.radius < this.bounds.top) {
                 this.y = this.bounds.bottom + this.radius;
             }
-            if (this.y - this.radius > this.bounds.bottom) {
+            else if (this.y - this.radius > this.bounds.bottom) {
                 this.y = -this.radius;
             }
         }

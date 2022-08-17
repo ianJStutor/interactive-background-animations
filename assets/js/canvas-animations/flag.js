@@ -55,7 +55,7 @@ export default class Flag {
             inset: 0,
             startTime: 0,
             pointEventDistance:  100,
-            pointEventMultiplier: 0.5,
+            pointEventMultiplier: 1.5,
             pointEventRecoverSpeed: 0.1
         }, options);
 

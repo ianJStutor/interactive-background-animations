@@ -61,6 +61,22 @@ const setup = {
         }
 
         engine.start();
+    },
+    _Chaser() {
+        const ctx = engine.ctx;
+        const canvas = ctx.canvas;
+        reset(canvas);
+
+        const { Chaser } = animations;
+        currentAnimation = Chaser;
+        Chaser.setupCanvas?.(canvas);
+
+        for (let i=0; i<201; i++) {
+            engine.addParticle(new Chaser(ctx, {color: fgcolor}));
+        }
+        engine.particles[0].setAsRabbit();
+
+        engine.start();
     }
 };
 
@@ -68,7 +84,8 @@ const headerAnimations = {
     init(ctx, navElement) {
         nav = navElement;
         engine = new ParticleEngine(ctx, {pointEvents: true, useParentForPointEvents: true});
-        for (let a of Object.values(animations)) {
+        const randomAnims = [...Object.values(animations)].sort(() => Math.random() - 0.5);
+        for (let a of randomAnims) {
             const button = document.createElement("button");
             button.setAttribute("data-tooltip", a.desc);
             nav.append(button);
