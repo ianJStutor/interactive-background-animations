@@ -1,7 +1,7 @@
 export default class Chaser {
 
     static className = "Chaser";
-    static desc = "flocking background";
+    static desc = "flocking lines";
 
     static setupCanvas(canvas) {
         canvas.classList.add(Chaser.className);

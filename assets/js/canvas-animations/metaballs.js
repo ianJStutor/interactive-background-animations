@@ -1,7 +1,7 @@
 export default class Metaball {
 
     static className = "Metaball";
-    static desc = "smoky background";
+    static desc = "smoke";
 
     static setupCanvas(canvas) {
         canvas.classList.add(Metaball.className);

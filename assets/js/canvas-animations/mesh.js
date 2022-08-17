@@ -1,7 +1,7 @@
 export default class Mesh {
 
     static className = "Mesh";
-    static desc = "mesh background";
+    static desc = "mesh lines";
 
     static setupCanvas(canvas) {
         canvas.classList.add(Mesh.className);

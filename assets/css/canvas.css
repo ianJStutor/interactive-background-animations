@@ -6,3 +6,7 @@ canvas.Metaball {
 canvas.Flag {
     opacity: 0.25;
 }
+
+canvas.Square {
+    opacity: 0.25;
+}

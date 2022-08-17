@@ -1,7 +1,7 @@
 export default class Flag {
 
     static className = "Flag";
-    static desc = "undulating background";
+    static desc = "waving dots";
 
     static setupCanvas(canvas) {
         canvas.classList.add(Flag.className);

@@ -77,6 +77,21 @@ const setup = {
         engine.particles[0].setAsRabbit();
 
         engine.start();
+    },
+    _Square() {
+        const ctx = engine.ctx;
+        const canvas = ctx.canvas;
+        reset(canvas);
+
+        const { Square } = animations;
+        currentAnimation = Square;
+        Square.setupCanvas?.(canvas);
+
+        for (let i=0; i<25; i++) {
+            engine.addParticle(new Square(ctx, {color: fgcolor}));
+        }
+
+        engine.start();
     }
 };
 
