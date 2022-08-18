@@ -48,8 +48,8 @@ export default class Square {
             angularVelocityMax: 0.05,
             trajectory: 0, //moving right by default
             bounds: null,
-            explosionNewParticlesMin: 2,
-            explosionNewParticlesMax: 5,
+            explosionNewParticlesMin: 5,
+            explosionNewParticlesMax: 25,
             explosionNewParticleSizeMultiplierMin: 0.1,
             explosionNewParticleSizeMultiplierMax: 0.25,
             shouldExplode: true, //explodable by default
@@ -161,6 +161,7 @@ export default class Square {
     }
 
     pointEvent(x, y) {
+        if (!this.settings.shouldRender) return;
         const xDist = x - this.x;
         const yDist = y - this.y;
         const dist = Math.hypot(xDist, yDist);
