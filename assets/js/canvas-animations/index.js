@@ -4,8 +4,9 @@ import Mesh from "./mesh.js";
 import Flag from "./flag.js";
 import Chaser from "./chasers.js";
 import Square from "./squares.js";
+import Parallax from "./parallax.js";
 
-const animations = { Metaball, Mesh, Flag, Chaser, Square };
+const animations = { Metaball, Mesh, Flag, Chaser, Square, Parallax };
 
 export {
     ParticleEngine,

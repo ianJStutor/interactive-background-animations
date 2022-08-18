@@ -92,6 +92,21 @@ const setup = {
         }
 
         engine.start();
+    },
+    _Parallax() {
+        const ctx = engine.ctx;
+        const canvas = ctx.canvas;
+        reset(canvas);
+
+        const { Parallax } = animations;
+        currentAnimation = Parallax;
+        Parallax.setupCanvas?.(canvas);
+
+        for (let i=0; i<500; i++) {
+            engine.addParticle(new Parallax(ctx, {color: fgcolor}));
+        }
+
+        engine.start();
     }
 };
 
@@ -100,10 +115,15 @@ const headerAnimations = {
         nav = navElement;
         engine = new ParticleEngine(ctx, {pointEvents: true, useParentForPointEvents: true});
         const randomAnims = [...Object.values(animations)].sort(() => Math.random() - 0.5);
-        for (let a of randomAnims) {
+        for (let i=0; i<randomAnims.length; i++) {
+            const a = randomAnims[i];
             const button = document.createElement("button");
             button.setAttribute("data-tooltip", a.desc);
             nav.append(button);
+            if (randomAnims[i+1] && [2, 4].includes(i)) {
+                const br = document.createElement("br");
+                nav.append(br);
+            }
             button.addEventListener("click", () => {
                 if (button.classList.contains("active")) {
                     button.classList.remove("active");

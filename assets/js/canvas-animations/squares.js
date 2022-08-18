@@ -125,6 +125,7 @@ export default class Square {
         this.draw();
         this.move(dt);
         //only the full-size squares reset
+        if (!this.settings.shouldRender && !this.settings.shouldWrap) return false;
         if (this.enteredBounds && this.exitedBounds) {
             if (!this.settings.shouldWrap) return false;
             this.reset();

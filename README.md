@@ -29,7 +29,7 @@ This class manages an HTML canvas element, its 2d context, an animation loop wit
 
 The ParticleEngine class requires a canvas 2d context to instantiate. It also accepts the options in a single object as the second argument to the constructor:
 
-```
+```js
 const ctx = document.querySelector("canvas").getContext("2d");
 const options = {};
 const engine = new ParticleEngine(ctx, options);
@@ -52,7 +52,7 @@ const engine = new ParticleEngine(ctx, options);
 
 * **setSize()**<br>Uses the current canvas dimensions to establish local width, height, and bounds; if the browser viewport is resized then this might need to be called manually but usually not. The loop function does check for canvas size changes automatically.
 * **setBounds()**<br>Unless overridden by an option, this uses the current canvas dimensions to establish bounding constraints (top, right, bottom, left) that will be passed down to each particle (to enable bounce, wrap, deletion if off screen, and other movement effects or constraints).
-* **addParticle(*particle*, *beginning = false*)**<br>Add a particle to the <code>ParticleEngine</code> system. The particle expected follows an implied interface (see below). Particles are pushed to the end of the particles array unless <code>beginning = true</code>, in which case it is unshifted to the beginning of the particles array.
+* **addParticle(*particle*, *beginning = false*)**<br>Add a particle to the <code>ParticleEngine</code> system. The particle expected follows an implied interface (see below). Particles are pushed to the end of the particles array unless <code>beginning = true</code>, in which case it is unshifted to the beginning of the particles array. The engine also passes a reference to itself to the Particle (if it has a <code>referenceEngine()</code> function).
 * **loop(*timestamp*)**<br>A single animation frame that calculates the delta time since the last call to improve smoothness at a target FPS setting. It then calls an update for each particle in the particle array, filtering out dead particles, if any. It might erase or repaint the canvas first. When done, unless specifically set to stop animation, <code>loop</code> will call itself with another <code>requestAnimationFrame</code>. Under normal conditions this function shouldn't need to be called directly.
 * **erase()**<br>Before every animation frame, <code>erase</code> will clear the canvas if no <code>bgcolor</code> setting is given, otherwise will paint a solid color. If <code>clearEveryFrame = false</code> then this function will not be called.
 * **start()**<br>Public function to get the animation engine started.
@@ -72,7 +72,7 @@ A Particle contains the functionality to manage a single point in 2d space, move
 
 #### Instantiation
 
-```
+```js
 const ctx = document.querySelector("canvas").getContext("2d");
 const options = {};
 const engine = new Particle(ctx, options);
@@ -107,6 +107,7 @@ Not all of these options will be needed for every specific Particle. Particles r
 #### Methods
 
 * **setCtx(*ctx*)**<br>Assigns a canvas 2d context to the Particle. This could be used to replace the context used when the Particle was first instantiated.
+* **referenceEngine(*engine*)**<br>Receives a reference to the ParticleEngine that "owns" the Particle. This enables effects like creating new Particles from within the Particle class and adding them to the engine.
 * **setBounds(*bounds*)**<br>Assigns a bounds object <code>{top, right, bottom, left}</code> to the Particle. If no parameter value is given, then the Particle uses the dimensions of the canvas element to establish its bounds.
 * **update(*deltaTime*, *particleArray*)**<br>The main controller function for an entire animation frame for this Particle. This is the only function called by the ParticleEngine. <code>update()</code> calls any other method needed move and draw the Particle, then return a Boolean value representing whether or not the Particle is "alive" and should be kept in or removed from the particle array. Returning <code>true</code> means the Particle is still alive; returning <code>false</code> means the Particle should no longer be tracked by the ParticleEngine. The <code>deltaTime</code> parameter is a multiplier that should affect the movement of a Particle. If the perfect FPS is achieved, this value should always be <code>1</code>. But life isn't that perfect, so some variability should be taken into account. The <code>particleArray</code> is the entire array of Particles maintained by the ParticleEngine. This could be important if the Particles need to interact with one another.
 * **draw(*particleArray*)**<br>This renders the Particle to the canvas using its 2d context. The <code>particleArray</code> may be needed to draw connections, for example, between Particles.
