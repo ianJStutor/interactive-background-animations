@@ -50,7 +50,7 @@ export default class ParticleEngine {
         else this.particles.push(p);
     }
 
-    loop(t) {
+    #loop(t) {
         if (!this.t) this.t = t - this.targetFps;
         const dt = (t - this.t) / this.targetFps;
         this.t = t;
@@ -68,7 +68,7 @@ export default class ParticleEngine {
         this.particles = this.particles.filter(p => p.update?.(dt, this.particles));
         //repeat loop?
         if (!this.animate || (stopWhenNoParticles && !this.particles.length)) return;
-        requestAnimationFrame((t) => this.loop(t));
+        requestAnimationFrame(this.#loop.bind(this));
     }
 
     erase() {
@@ -84,7 +84,7 @@ export default class ParticleEngine {
     start() {
         requestAnimationFrame((t) => {
             this.animate = true;
-            this.loop(t);
+            this.#loop(t);
         });
     }
 
