@@ -67,11 +67,11 @@ export default class Square {
         this.color = this.settings.color;
 
         //size, postion, etc.
-        this.reset();
+        this.#reset();
 
     }
 
-    reset() {
+    #reset() {
         //size, halfsize
         const { size, minSize, maxSize } = this.settings;
         this.size = size ?? Math.random() * (maxSize - minSize) + minSize;
@@ -122,18 +122,18 @@ export default class Square {
     update(dt) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw();
-        this.move(dt);
+        this.#draw();
+        this.#move(dt);
         //only the full-size squares reset
         if (!this.settings.shouldRender && !this.settings.shouldWrap) return false;
         if (this.enteredBounds && this.exitedBounds) {
             if (!this.settings.shouldWrap) return false;
-            this.reset();
+            this.#reset();
         }
         return true;
     }
 
-    draw() {
+    #draw() {
         if (!this.settings.shouldRender) return;
         const ctx = this.ctx;
         ctx.fillStyle = this.color;
@@ -144,15 +144,15 @@ export default class Square {
         ctx.restore();
     }
 
-    move(dt) {
+    #move(dt) {
         this.x += this.vx * dt;
         this.y += this.vy * dt;
         this.angle += this.va * dt;
-        if (!this.enteredBounds) this.enteredBounds = this.inBounds();
-        if (this.enteredBounds && !this.exitedBounds) this.exitedBounds = !this.inBounds();
+        if (!this.enteredBounds) this.enteredBounds = this.#inBounds();
+        if (this.enteredBounds && !this.exitedBounds) this.exitedBounds = !this.#inBounds();
     }
 
-    inBounds() {
+    #inBounds() {
         const {top, right, bottom, left} = this.bounds;
         return this.x - this.size > left &&
                this.x - this.size < right &&

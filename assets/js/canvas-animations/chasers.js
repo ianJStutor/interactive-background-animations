@@ -95,12 +95,12 @@ export default class Chaser {
     update(dt, particles) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw();
-        this.move(dt, particles);
+        this.#draw();
+        this.#move(dt, particles);
         return true;
     }
 
-    draw() {
+    #draw() {
         const ctx = this.ctx;
         if (this.isRabbit) {
             if (this.settings.rabbitRadius) {
@@ -136,7 +136,7 @@ export default class Chaser {
         ctx.globalAlpha = 1;
     }
 
-    move(dt, particles) {
+    #move(dt, particles) {
         //tail
         if (!this.isRabbit) {
             const { tailLength } = this.settings;

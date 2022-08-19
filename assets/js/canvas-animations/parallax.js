@@ -43,7 +43,7 @@ export default class Parallax {
         }
 
         //position
-        this.setPosition();
+        this.#setPosition();
 
         //speed
         this.vx = this.originalVx = 0;
@@ -57,7 +57,7 @@ export default class Parallax {
 
     }
 
-    setPosition(side) {
+    #setPosition(side) {
         if (this.settings.x) this.x = this.settings.x;
         if (this.settings.y) return this.y = this.settings.y;
         if (this.settings.defaultPositionOnCanvas || !side) {
@@ -109,12 +109,12 @@ export default class Parallax {
     update(dt, particles) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw();
-        this.move(dt);
+        this.#draw();
+        this.#move(dt);
         return true;
     }
 
-    draw(particles) {
+    #draw(particles) {
         const ctx = this.ctx;
         const { centerX, centerY, width, height } = this.bounds;
         const xScale = Math.abs(centerX - this.x) / width;
@@ -140,7 +140,7 @@ export default class Parallax {
         ctx.restore();
     }
 
-    move(dt) {
+    #move(dt) {
         //resistance
         if (this.vx !== this.originalVx) {
             const diff = this.originalVx - this.vx;
@@ -163,19 +163,19 @@ export default class Parallax {
         if (this.bounds) {
             if (this.x + this.radius < this.bounds.left) {
                 this.settings.defaultPositionOnCanvas = false;
-                this.setPosition("right");
+                this.#setPosition("right");
             }
             else if (this.x - this.radius > this.bounds.right) {
                 this.settings.defaultPositionOnCanvas = false;
-                this.setPosition("left");
+                this.#setPosition("left");
             }
             if (this.y + this.radius < this.bounds.top) {
                 this.settings.defaultPositionOnCanvas = false;
-                this.setPosition("bottom");
+                this.#setPosition("bottom");
             }
             else if (this.y - this.radius > this.bounds.bottom) {
                 this.settings.defaultPositionOnCanvas = false;
-                this.setPosition("top");
+                this.#setPosition("top");
             }
         }
     }

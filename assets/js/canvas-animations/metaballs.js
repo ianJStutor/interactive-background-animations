@@ -1,7 +1,7 @@
 export default class Metaball {
 
     static className = "Metaball";
-    static desc = "smoke";
+    static desc = "coffee cream";
 
     static setupCanvas(canvas) {
         canvas.classList.add(Metaball.className);
@@ -72,12 +72,12 @@ export default class Metaball {
     update(dt) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw();
-        this.move(dt);
+        this.#draw();
+        this.#move(dt);
         return true;
     }
 
-    draw() {
+    #draw() {
         const ctx = this.ctx;
         ctx.fillStyle = this.color;
         ctx.beginPath();
@@ -85,7 +85,7 @@ export default class Metaball {
         ctx.fill();
     }
 
-    move(dt) {
+    #move(dt) {
         //resistance
         if (this.vx !== this.originalVx) {
             const diff = this.originalVx - this.vx;

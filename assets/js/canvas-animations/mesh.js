@@ -73,12 +73,12 @@ export default class Mesh {
     update(dt, particles) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw(particles);
-        this.move(dt);
+        this.#draw(particles);
+        this.#move(dt);
         return true;
     }
 
-    draw(particles) {
+    #draw(particles) {
         const ctx = this.ctx;
         const { maxLineDistance, minLineDistance, lineWidth } = this.settings;
         if (this.radius) {
@@ -102,7 +102,7 @@ export default class Mesh {
         }
     }
 
-    move(dt) {
+    #move(dt) {
         //resistance
         if (this.vx !== this.originalVx) {
             const diff = this.originalVx - this.vx;

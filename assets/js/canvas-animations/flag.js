@@ -88,13 +88,13 @@ export default class Flag {
     update(dt) {
         //must have a context
         if (!this.ctx) return false;
-        this.draw(dt);
-        this.move(dt);
+        this.#draw(dt);
+        this.#move(dt);
         this.time += this.settings.timestep;
         return true;
     }
 
-    draw(dt) {
+    #draw(dt) {
         const {divisor, intensity} = this.settings;
         const ctx = this.ctx;
         const x = this.x + this.simplex.noise3D(this.x/divisor, this.y/divisor, this.time) * intensity * dt;
@@ -105,7 +105,7 @@ export default class Flag {
         ctx.fill();
     }
 
-    move(dt) {
+    #move(dt) {
         //resistance
         if (this.vx !== this.originalVx) {
             const diff = this.originalVx - this.vx;
