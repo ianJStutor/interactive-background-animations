@@ -12,7 +12,7 @@
 
 An assortment of canvas animations intended to run behind a hero or header or entire web page.
 
-These are all built with vanilla JavaScript.
+These are all built with vanilla JavaScript, my favorite flavor!
 
 ### Contents
 
