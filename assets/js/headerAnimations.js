@@ -54,7 +54,7 @@ const setup = {
         currentAnimation = Flag;
         Flag.setupCanvas?.(canvas);
 
-        const simplex = new SimplexNoise();
+        const simplex = new SimplexNoise(); //from <script> tag in HTML
         const points = Flag.getPointsArray(canvas.width, canvas.height, {inset: 20});
         for (let {x, y} of points) {
             engine.addParticle(new Flag(ctx, simplex, {x, y, color: fgcolor}));
