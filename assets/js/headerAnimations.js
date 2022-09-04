@@ -2,7 +2,7 @@ import {
     ParticleEngine,
     animations
 } from "./canvas-animations/index.js";
-import { initTooltips } from "./widgets/tooltips.js";
+import { initTooltips } from "https://cdn.jsdelivr.net/gh/ianJStutor/tooltips/tooltips.js";
 
 var engine = null;
 var currentAnimation = null;
