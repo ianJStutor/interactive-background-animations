@@ -2,7 +2,7 @@ import {
     ParticleEngine,
     animations
 } from "./canvas-animations/index.js";
-import { initTooltips } from "https://cdn.jsdelivr.net/gh/ianJStutor/tooltips/tooltips.js";
+import { tooltips } from "https://cdn.jsdelivr.net/gh/ianJStutor/tooltips/tooltips.js";
 
 var engine = null;
 var currentAnimation = null;
@@ -134,7 +134,7 @@ const headerAnimations = {
                 setup[`_${a.className}`]?.();
             });
         }
-        initTooltips(nav);
+        tooltips(nav);
     },
     setColor(color) { fgcolor = color; },
     start(rand = true) {
