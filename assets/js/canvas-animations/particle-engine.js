@@ -1,6 +1,6 @@
 export default class ParticleEngine {
 
-    constructor(ctx, options) {
+    constructor(ctx, options = {}) {
         this.settings = Object.assign({
             particles: [],
             animate: true,
