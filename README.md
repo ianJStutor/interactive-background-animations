@@ -8,10 +8,6 @@ An assortment of canvas animations intended to run behind a hero or header or en
 
 These are all built with vanilla JavaScript, my favorite flavor!
 
-## Author
-
-> [Ian Marshall](https://ianjstutor.github.io/ian-marshall/)
-
 ## Live Site
 
 > [https://ianjstutor.github.io/interactive-background-animations/](https://ianjstutor.github.io/interactive-background-animations/)
@@ -113,5 +109,9 @@ Not all of these options will be needed for every specific Particle. Particles r
 * **setBounds(*bounds*)**<br>Assigns a bounds object <code>{top, right, bottom, left}</code> to the Particle. If no parameter value is given, then the Particle uses the dimensions of the canvas element to establish its bounds.
 * **update(*deltaTime*, *particleArray*)**<br>The main controller function for an entire animation frame for this Particle. This is the only function called by the ParticleEngine. <code>update()</code> calls any other method needed move and draw the Particle, then return a Boolean value representing whether or not the Particle is "alive" and should be kept in or removed from the particle array. Returning <code>true</code> means the Particle is still alive; returning <code>false</code> means the Particle should no longer be tracked by the ParticleEngine. The <code>deltaTime</code> parameter is a multiplier that should affect the movement of a Particle. If the perfect FPS is achieved, this value should always be <code>1</code>. But life isn't that perfect, so some variability should be taken into account. The <code>particleArray</code> is the entire array of Particles maintained by the ParticleEngine. This could be important if the Particles need to interact with one another.
 * **#draw(*particleArray*)**<br>This renders the Particle to the canvas using its 2d context. The <code>particleArray</code> may be needed to draw connections, for example, between Particles.
+
+## Author
+
+> [Ian Marshall](https://ianjstutor.github.io/ian-marshall/)
 * **#move(*deltaTime*, *particleArray*)**<br>The algorithm for moving the particle in 2d space. Usually this means applying forces (speed, acceleration, friction, gravity, etc.) and changing the Particle's position. Additionally, this may take into account the effects of user interaction, the bounds object and edge interaction, and adjustment of net forces for FPS smoothing by multiplying by <code>deltaTime</code>, and/or an interaction among the Particles in the <code>particleArray</code>.
 * **pointerEvent(*x*, *y*)**<br>The algorithm for handling an interaction with the user's mouse, touch, or pointer device. The <code>x</code> and <code>y</code> parameters represent the 2d location of the event. Some possible interactions include chasing, fleeing, orbiting, etc.
